@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/hello")
 async def hello():
-    return {"message": "hello world!"}
+    return {"message": "hello RetinaNet!"}
 
 @app.post("/obj_detection/")
 async def obj_detection(file: UploadFile):
