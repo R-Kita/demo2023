@@ -1,6 +1,6 @@
-# from fastapi import FastAPI
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
+from ml_model import retinanet
 
 app = FastAPI()
 
@@ -8,12 +8,12 @@ app = FastAPI()
 async def hello():
     return {"message": "hello world!"}
 
-@app.post("/upload/")
-async def upload_file(file: UploadFile):
+@app.post("/obj_detection/")
+async def obj_detection(file: UploadFile):
     try:
         image_data = await file.read()
-        random_number = (100, 200)
-        return JSONResponse(content={"random_number": random_number})
+        pred = retinanet.prediction(image_data)
+        return JSONResponse(content=pred)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
