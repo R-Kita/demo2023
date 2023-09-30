@@ -5,7 +5,6 @@ import torchvision
 from torchvision import transforms
 from PIL import Image
 from PIL import ImageDraw, ImageFont
-import matplotlib.pyplot as plt
 from torchvision.models.detection import retinanet_resnet50_fpn
 
 
@@ -42,7 +41,6 @@ def prediction(image_data):
     img = Image.open(io.BytesIO(image_data))
     transform = transforms.ToTensor()
     x = transform(img)
-    plt.imshow(x.permute(1, 2, 0))
 
     model = retinanet_resnet50_fpn(pretrained=True)
     model.eval()
