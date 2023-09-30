@@ -9,4 +9,4 @@ RUN pip install fastapi uvicorn[standard]
 RUN pip install python-multipart
 RUN pip install numpy Pillow torch torchvision matplotlib 
 
-ENTRYPOINT ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--reload"]
+ENTRYPOINT ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--reload", "--port", "$PORT"]
