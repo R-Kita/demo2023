@@ -8,6 +8,23 @@ app = FastAPI()
 async def hello():
     return {"message": "hello RetinaNet!"}
 
+@app.get("/obj_detection_mock")
+async def hello():
+    return \
+        {
+          "boxes": [
+            [
+              270.7120666503906,
+              144.43141174316406,
+              367.4526062011719,
+              227.78172302246094
+            ]
+          ],
+          "labels": [
+              "person"
+          ]
+        }
+
 @app.post("/obj_detection/")
 async def obj_detection(file: UploadFile):
     try:
