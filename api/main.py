@@ -1,8 +1,16 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from ml_model import retinanet
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://spectrum-animated-jasper.glitch.me"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/hello")
 async def hello():
